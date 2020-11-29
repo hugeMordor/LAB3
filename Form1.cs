@@ -147,8 +147,8 @@ namespace LAB
             while (y0 < fullH)
             {
                 Point TY1, TY2;
-                TY1 = new Point(0, fullH-y0 + 100);
-                TY2 = new Point(fullW, fullH-y0 + 100);
+                TY1 = new Point(0, fullH-y0);
+                TY2 = new Point(fullW, fullH-y0);
                 tab.DrawLine(Pent, TY1, TY2);
                 y0 += 100;
             }
