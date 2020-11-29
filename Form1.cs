@@ -8,27 +8,27 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace LAB
-{ 
+{
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
-        public double V0, V0x, V0y, Hmax, Lmax, Tmax, h0, alpha, t;
+        public double V0, V0x, V0y, Hmax, Lmax, Tmax, h0, alpha, t, n, n0x, n0y;
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            timer1.Enabled=true;
-            
+            timer1.Enabled = true;
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             Graph();
             t += 0.01;
-            x = Math.Round(V0x * t);
-            y = Math.Round(h0 + (V0y * t) - (9.81 * t * t) / 2);
+            x = Math.Round(n0x * t);
+            y = Math.Round(h0 + (n0y * t) - (9.81 * t * t) / 2);
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -44,8 +44,8 @@ namespace LAB
         private void Button5_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            x = 0;y = 0;t = 0;
-            
+            x = 0; y = 0; t = 0;
+
         }
 
         public void Input()
@@ -59,17 +59,25 @@ namespace LAB
             }
             catch
             {
-                
+
             }
             finally { button1.Enabled = true; }
-            
-            
+            n = V0;
+            while (n > 100)
+            {
+                n /= 2;
+                n0x /= 2;
+                n0y /= 2;
+            }
         }
         public void Calc()
         {
 
             V0x = V0 * Math.Cos(alpha * Math.PI / 180);
             V0y = V0 * Math.Sin(alpha * Math.PI / 180);
+            n0x = n * Math.Cos(alpha * Math.PI / 180);
+            n0y = n * Math.Sin(alpha * Math.PI / 180);
+
             Hmax = h0 + (V0y * V0y) / (2 * 9.81);
             Tmax = (V0y + Math.Sqrt(V0y * V0y + 2 * 9.81 * h0)) / 9.81;
             Lmax = V0x * Tmax;
