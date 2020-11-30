@@ -112,9 +112,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(723, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Угол";
+            this.label2.Text = "Угол в градусах";
             // 
             // label3
             // 
